@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: localcompare-platform
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build:client
+    startCommand: node server/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
