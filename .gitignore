@@ -30,3 +30,6 @@ Thumbs.db
 .vscode/
 .idea/
 .system_generated/
+tools/
+*.exe
+
