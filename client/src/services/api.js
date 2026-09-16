@@ -1,7 +1,8 @@
 // Client API Service Layer
 
-const RAW_API_URL = import.meta.env.VITE_API_URL || '';
-const BASE_URL = RAW_API_URL ? `${RAW_API_URL.replace(/\/$/, '')}/api` : '/api';
+const RAW_API_URL = (import.meta.env.VITE_API_URL || '').trim();
+const normalizedUrl = RAW_API_URL.replace(/\/+$/, '').replace(/\/api$/, '');
+const BASE_URL = normalizedUrl ? `${normalizedUrl}/api` : '/api';
 
 function buildQuery(params = {}) {
   const cleaned = {};
