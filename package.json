@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "start": "node server/index.js",
     "dev": "concurrently \"npm.cmd run dev:server\" \"npm.cmd run dev:client\"",
     "dev:server": "node server/index.js",
     "dev:client": "npm.cmd --prefix client run dev",

@@ -23,7 +23,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Permissive CORS for local dev and cloud deployment
+// Permissive CORS for local dev and cloud deployment (Vercel, Render, etc.)
 app.use(
   cors({
     origin: true,
@@ -32,6 +32,7 @@ app.use(
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
   })
 );
+app.options('*', cors());
 
 app.use(express.json());
 
@@ -103,9 +104,10 @@ if (fs.existsSync(clientDist)) {
   });
 }
 
-// Dual-stack listening (IPv4 + IPv6 localhost compatible)
-app.listen(PORT, () => {
-  console.log(`🚀 LocalCompare API server running on port ${PORT}`);
+// Render-compatible host and port binding (process.env.PORT and 0.0.0.0)
+const HOST = '0.0.0.0';
+app.listen(PORT, HOST, () => {
+  console.log(`🚀 LocalCompare API server running on port ${PORT} (${HOST})`);
   console.log(`📡 Local: http://localhost:${PORT}`);
   console.log(`🩺 Health: http://localhost:${PORT}/api/health`);
 });
